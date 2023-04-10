@@ -80,7 +80,7 @@ select * from Match
 INSERT INTO Match values ('LW-Game1', 'Chase Center-SF', '2022-10-18',1);
 INSERT INTO Match values ('LC-Game1', 'Crypto Arena-LA', '2022-10-20',1);
 
-CREATE TABLE Statistics (
+CREATE TABLE Statistic (
   player_match_id VARCHAR(50) PRIMARY KEY,
   player_id VARCHAR(50) NOT NULL,
   match_id VARCHAR(50) NOT NULL,
@@ -91,3 +91,7 @@ CREATE TABLE Statistics (
   CONSTRAINT fk_player FOREIGN KEY (player_id) REFERENCES Player(player_id),
   CONSTRAINT fk_match FOREIGN KEY (match_id) REFERENCES Match(match_id)
 );
+select * from Statistic
+DROP TABLE Statistic
+INSERT INTO Match values ('LW-Game1', 'Chase Center-SF', '2022-10-18',1);
+INSERT INTO Match values ('LC-Game1', 'Crypto Arena-LA', '2022-10-20',1);
