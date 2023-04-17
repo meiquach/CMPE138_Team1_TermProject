@@ -7,8 +7,8 @@ CREATE TABLE Team (
   head_coach VARCHAR(50) NOT NULL,
   assistant_coach VARCHAR(50) NOT NULL,
   num_matches INT,
-  --CONSTRAINT fk_head_coach FOREIGN KEY (head_coach) REFERENCES Head_Coach(coach_id),
-  --CONSTRAINT fk_assistant_coach FOREIGN KEY (assistant_coach) REFERENCES Assistant_Coach(coach_id)
+  CONSTRAINT fk_head_coach FOREIGN KEY (head_coach) REFERENCES Head_Coach(coach_id),
+  CONSTRAINT fk_assistant_coach FOREIGN KEY (assistant_coach) REFERENCES Assistant_Coach(coach_id)
 );
 
 select * from Team
@@ -52,12 +52,17 @@ CREATE TABLE Match (
   match_id VARCHAR(50) PRIMARY KEY,
   location VARCHAR(50) NOT NULL,
   match_date DATE NOT NULL,
-  team_id INT NOT NULL,
-  CONSTRAINT fk_team_match FOREIGN KEY (team_id) REFERENCES Team(team_id)
+  home_team_id VARCHAR(50)NOT NULL,
+  away_team_id VARCHAR(50)NOT NULL,
+  team_id VARCHAR(50)NOT NULL,
+  home_score INT NOT NULL,
+  away_score INT NOT NULL,
+  CONSTRAINT fk_home_team FOREIGN KEY (home_team_id) REFERENCES Team(team_id)
+  CONSTRAINT fk_away_team FOREIGN KEY (away_team_id) REFERENCES Team(team_id)
 );
 
 select * from Match
---DROP TABLE Match
+DROP TABLE Match
 
 
 CREATE TABLE Statistic (
