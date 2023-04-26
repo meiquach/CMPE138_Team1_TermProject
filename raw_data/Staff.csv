@@ -1,0 +1,10 @@
+str,str,str,str,str,str
+username, team_id, role, first_name, last_name, password
+darvinham, Team_000001, HEAD_COACH, Darvin, Ham, 35120f590bc08a7c2ddd6113d22e9c43ad7d00e0d48ac39af4936f0dd8249099
+chrisjent, Team_000001, ASSISTANT_COACH, Christ, Jent, e2586ca65f7a3cef131d1a59e06e13d2257c686b5dc95ef69a0789b1706cd3d2
+mikebrown, Team_000002, HEAD_COACH, Mike, Brown, 338d970dc1ddd3b93e81bb0f3d2511418aa88dbaaae5eef0dffce5f5b8b15789
+dutchgaitley, Team_000002, ASSISTANT_COACH, Dutch, Gaitley, c48b85dc665f841019744359584392c1aeda21a9eb4f983f987602572a646ed4
+stevekerr, Team_000003, HEAD_COACH, Steve, Kerr, 90e0083111444e26261e591f4f1b91bc32861b70cdb2d7aa63cc352e033acd30
+kennyatkinson, Team_000003, ASSISTANT_COACH, Kenny, Atkinson, 07708f9cc5999bef70cc4a811e07ee2c77138720eead81f45a8814bafd27c36a
+tyronnlue, Team_000004, HEAD_COACH, Tyronn, Lue, 63667479764df4f13a04eb6e52ba6a23c49a856897fd54ccd5b9382b7d8c0f00
+danialcraig, Team_000004, ASSISTANT_COACH, Danial, Craig, 8bc94ab98d8ff6d1b16813259b2bfc9af94acaca8355320e553ce2727e4703e9

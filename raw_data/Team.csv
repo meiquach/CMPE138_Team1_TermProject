@@ -1,0 +1,6 @@
+str,str,int
+team_id, team_name, num_matches
+Team_000001,Los_Angeles_Lakers,9
+Team_000002,Sacramento_Kings,9
+Team_000003,Golden_State_Warriors,9
+Team_000004,LA_Clippers,9

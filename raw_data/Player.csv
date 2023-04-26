@@ -1,0 +1,22 @@
+str,str,str,str,str,str
+player_id, team_id, first_name, last_name, position_played, player_status
+Player_000001,Team_000003,Stephen,Curry,PG,Healthy
+Player_000002,Team_000003,Draymond,Green,PF,Healthy
+Player_000003,Team_000003,Klay,Thompson,SG,Healthy
+Player_000004,Team_000003,Jordan,Poole,SG,Healthy
+Player_000005,Team_000003,Jonathan,Kuminga,PF,Healthy
+Player_000006,Team_000002,DeAaron,Fox,PG,Healthy
+Player_000007,Team_000002,Domantas,Sabonis,PF,Healthy
+Player_000008,Team_000002,Kevin,Huerter,SG,Healthy
+Player_000009,Team_000002,Malik,Monk,SG,Healthy
+Player_000010,Team_000002,Harrison,Barnes,SF,Healthy
+Player_000011,Team_000004,Kawhi,Leonard,SF,Healthy
+Player_000012,Team_000004,Ivica,Zubac,C,Healthy
+Player_000013,Team_000004,Paul,George,F,Healthy
+Player_000014,Team_000004,Bones,Hyland,PG,Healthy
+Player_000015,Team_000004,Terrance,Mann,SG,Healthy
+Player_000016,Team_000001,LeBron,James,SF,Healthy
+Player_000017,Team_000001,Anthony,Davis,PF,Healthy
+Player_000018,Team_000001,Dennis,Schroder,PG,Healthy
+Player_000019,Team_000001,Austin,Reeves,SG,Healthy
+Player_000020,Team_000001,Rui,Hachimura,PF,Healthy
