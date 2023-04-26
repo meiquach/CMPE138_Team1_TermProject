@@ -1,4 +1,5 @@
-#coach_id, team_id, first_name, last_name
+str,str,str,str
+coach_id, team_id, first_name, last_name
 Coach_000001, Team_000001, Darvin, Ham
 Coach_000002, Team_000002, Mike, Brown
 Coach_000003, Team_000003, Steve, Kerr

@@ -1,0 +1,20 @@
+str,str,str,str,str,int,int
+match_id, match_date, location, home_team_id, away_team_id, home_score, away_score
+Match_000001,2022-10-18,San_Francisco,Team_000003,Team_000001,123,109
+Match_000002,2022-10-20,Los_Angeles,Team_000004,Team_000001,103,97
+Match_000003,2022-10-22,Sacramento,Team_000002,Team_000004,109,111
+Match_000004,2022-10-23,San_Francisco,Team_000003,Team_000002,130,125
+Match_000005,2022-11-07,San_Francisco,Team_000003,Team_000002,116,113
+Match_000006,2022-11-09,Los_Angeles,Team_000001,Team_000004,101,114
+Match_000007,2022-11-11,Los_Angeles,Team_000001,Team_000002,114,120
+Match_000008,2022-11-13,Sacramento,Team_000002,Team_000003,122,115
+Match_000009,2022-11-23,San_Francisco,Team_000003,Team_000004,124,107
+Match_000010,2022-12-03,Los_Angeles,Team_000004,Team_000002,96,123
+Match_000011,2022-12-21,Sacramento,Team_000002,Team_000001,134,120
+Match_000012,2023-01-07,Sacramento,Team_000002,Team_000001,134,136
+Match_000013,2023-01-24,Los_Angeles,Team_000001,Team_000004,115,133
+Match_000014,2023-02-11,San_Francisco,Team_000003,Team_000001,103,109
+Match_000015,2023-02-14,Los_Angeles,Team_000004,Team_000003,134,124
+Match_000016,2023-02-23,Los_Angeles,Team_000001,Team_000003,124,111
+Match_000017,2023-02-24,Los_Angeles,Team_000004,Team_000002,175,176
+Match_000018,2023-03-02,San_Francisco,Team_000003,Team_000004,115,91

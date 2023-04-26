@@ -1,0 +1,6 @@
+str,str,str,str,int
+team_id, team_name, head_coach, assistant_coach, num_matches
+Team_000001,Los_Angeles_Lakers,Coach_000001,Assistant_000001,3
+Team_000002,Sacramento_Kings,Coach_000002,Assistant_000002,3
+Team_000003,Golden_State_Warriors,Coach_000003,Assistant_000003,3
+Team_000004,LA_Clippers,Coach_000004,Assistant_000004,3
