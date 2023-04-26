@@ -30,7 +30,7 @@ def generate_sql(table):
             values_str = ""
             for i in range(num_cols):
                 dtype = dtypes[i]
-                val = values[i]
+                val = values[i].strip()
                 if dtype == 'str':
                     values_str += f"\'{val}\', "
                 else:
@@ -43,11 +43,10 @@ def generate_sql(table):
 if __name__ == '__main__':
     data_dir = 'raw_data'
     tables = [
-        'Head_Coach',
-        'Assistant_Coach',
         'Team',
+        'Staff',
         'Player',
-        'Match',
+        'Matches',
         'Statistic'
     ]
 

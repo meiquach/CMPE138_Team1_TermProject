@@ -1,39 +1,25 @@
-use master 
-CREATE DATABASE NBA_team
+DROP DATABASE IF EXISTS NBA_team;
+CREATE DATABASE NBA_team;
+USE NBA_team;
 
 CREATE TABLE Team (
-  team_id VARCHAR(50) PRIMARY KEY,	
+  team_id VARCHAR(50) PRIMARY KEY,
   team_name VARCHAR(50) NOT NULL UNIQUE,
-  head_coach VARCHAR(50) NOT NULL,
-  assistant_coach VARCHAR(50) NOT NULL,
-  num_matches INT,
-  CONSTRAINT fk_head_coach FOREIGN KEY (head_coach) REFERENCES Head_Coach(coach_id),
-  CONSTRAINT fk_assistant_coach FOREIGN KEY (assistant_coach) REFERENCES Assistant_Coach(coach_id)
+  num_matches INT
 );
+select * from Team;
 
-select * from Team
---DROP TABLE Team 
 
-CREATE TABLE Head_Coach (
-  coach_id VARCHAR(50) PRIMARY KEY,
+CREATE TABLE Staff (
+  username VARCHAR(50) PRIMARY KEY,
   team_id VARCHAR(50) NOT NULL,
+  role enum('HEAD_COACH', 'ASSISTANT_COACH') NOT NULL default 'ASSISTANT_COACH',
   first_name VARCHAR(50) NOT NULL,
   last_name VARCHAR(50) NOT NULL,
-  CONSTRAINT fk_team_head_coach FOREIGN KEY (team_id) REFERENCES Team(team_id)
+  password VARCHAR(100) NOT NULL,
+  CONSTRAINT fk_team_staff FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
-
-select * from Head_Coach
---DROP TABLE Head_Coach 
-
-CREATE TABLE Assistant_Coach (
-  assistant_id VARCHAR(50) PRIMARY KEY,
-  team_id VARCHAR(50) NOT NULL,
-  first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
-  CONSTRAINT fk_team_assistant_coach FOREIGN KEY (team_id) REFERENCES Team(team_id)
-);
-select * from Assistant_Coach
---DROP TABLE Assistant_Coach
+select * from Staff;
 
 CREATE TABLE Player (
   player_id VARCHAR(50) PRIMARY KEY,
@@ -42,13 +28,11 @@ CREATE TABLE Player (
   last_name VARCHAR(50) NOT NULL,
   position_played VARCHAR(50) NOT NULL,
   player_status VARCHAR(50),
-  CONSTRAINT fk_team FOREIGN KEY (team_id) REFERENCES Team(team_id)
+  CONSTRAINT fk_team_player FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
+select * from Player;
 
-select * from Player
---DROP TABLE Player
-
-CREATE TABLE Match (
+CREATE TABLE Matches (
   match_id VARCHAR(50) PRIMARY KEY,
   match_date DATE NOT NULL,
   location VARCHAR(50) NOT NULL,
@@ -56,13 +40,10 @@ CREATE TABLE Match (
   away_team_id VARCHAR(50)NOT NULL,
   home_score INT NOT NULL,
   away_score INT NOT NULL,
-  CONSTRAINT fk_home_team FOREIGN KEY (home_team_id) REFERENCES Team(team_id)
+  CONSTRAINT fk_home_team FOREIGN KEY (home_team_id) REFERENCES Team(team_id),
   CONSTRAINT fk_away_team FOREIGN KEY (away_team_id) REFERENCES Team(team_id)
 );
-
-select * from Match
--- DROP TABLE Match
-
+select * from Matches;
 
 CREATE TABLE Statistic (
   statistic_id VARCHAR(50) PRIMARY KEY,
@@ -74,32 +55,28 @@ CREATE TABLE Statistic (
   blocks NUMERIC(3,0),
   steals NUMERIC(3,0),
   CONSTRAINT fk_player FOREIGN KEY (player_id) REFERENCES Player(player_id),
-  CONSTRAINT fk_match FOREIGN KEY (match_id) REFERENCES Match(match_id)
+  CONSTRAINT fk_match FOREIGN KEY (match_id) REFERENCES Matches(match_id)
 );
-select * from Statistic
---DROP TABLE Statistic
+select * from Statistic;
 
 
 
--- Head_Coach: ['coach_id', ' team_id', ' first_name', ' last_name']
-INSERT INTO Head_Coach VALUES ('Coach_000001', ' Team_000001', ' Darvin', ' Ham');
-INSERT INTO Head_Coach VALUES ('Coach_000002', ' Team_000002', ' Mike', ' Brown');
-INSERT INTO Head_Coach VALUES ('Coach_000003', ' Team_000003', ' Steve', ' Kerr');
-INSERT INTO Head_Coach VALUES ('Coach_000004', ' Team_000004', ' Tyronn', ' Lue');
+-- Team: ['team_id', ' team_name', ' num_matches']
+INSERT INTO Team VALUES ('Team_000001', 'Los_Angeles_Lakers', 9);
+INSERT INTO Team VALUES ('Team_000002', 'Sacramento_Kings', 9);
+INSERT INTO Team VALUES ('Team_000003', 'Golden_State_Warriors', 9);
+INSERT INTO Team VALUES ('Team_000004', 'LA_Clippers', 9);
 
 
--- Assistant_Coach: ['assistant_id', ' team_id', ' first_name', ' last_name']
-INSERT INTO Assistant_Coach VALUES ('Assistant_000001', ' Team_000001', ' Christ', ' Jent');
-INSERT INTO Assistant_Coach VALUES ('Assistant_000002', ' Team_000002', ' Dutch', ' Gaitley');
-INSERT INTO Assistant_Coach VALUES ('Assistant_000003', ' Team_000003', ' Kenny', ' Atkinson');
-INSERT INTO Assistant_Coach VALUES ('Assistant_000004', ' Team_000004', ' Dan', ' Craig');
-
-
--- Team: ['team_id', ' team_name', ' head_coach', ' assistant_coach', ' num_matches']
-INSERT INTO Team VALUES ('Team_000001', 'Los_Angeles_Lakers', 'Coach_000001', 'Assistant_000001', 3);
-INSERT INTO Team VALUES ('Team_000002', 'Sacramento_Kings', 'Coach_000002', 'Assistant_000002', 3);
-INSERT INTO Team VALUES ('Team_000003', 'Golden_State_Warriors', 'Coach_000003', 'Assistant_000003', 3);
-INSERT INTO Team VALUES ('Team_000004', 'LA_Clippers', 'Coach_000004', 'Assistant_000004', 3);
+-- Staff: ['username', ' team_id', ' role', ' first_name', ' last_name', ' password']
+INSERT INTO Staff VALUES ('darvinham', 'Team_000001', 'HEAD_COACH', 'Darvin', 'Ham', '35120f590bc08a7c2ddd6113d22e9c43ad7d00e0d48ac39af4936f0dd8249099');
+INSERT INTO Staff VALUES ('chrisjent', 'Team_000001', 'ASSISTANT_COACH', 'Christ', 'Jent', 'e2586ca65f7a3cef131d1a59e06e13d2257c686b5dc95ef69a0789b1706cd3d2');
+INSERT INTO Staff VALUES ('mikebrown', 'Team_000002', 'HEAD_COACH', 'Mike', 'Brown', '338d970dc1ddd3b93e81bb0f3d2511418aa88dbaaae5eef0dffce5f5b8b15789');
+INSERT INTO Staff VALUES ('dutchgaitley', 'Team_000002', 'ASSISTANT_COACH', 'Dutch', 'Gaitley', 'c48b85dc665f841019744359584392c1aeda21a9eb4f983f987602572a646ed4');
+INSERT INTO Staff VALUES ('stevekerr', 'Team_000003', 'HEAD_COACH', 'Steve', 'Kerr', '90e0083111444e26261e591f4f1b91bc32861b70cdb2d7aa63cc352e033acd30');
+INSERT INTO Staff VALUES ('kennyatkinson', 'Team_000003', 'ASSISTANT_COACH', 'Kenny', 'Atkinson', '07708f9cc5999bef70cc4a811e07ee2c77138720eead81f45a8814bafd27c36a');
+INSERT INTO Staff VALUES ('tyronnlue', 'Team_000004', 'HEAD_COACH', 'Tyronn', 'Lue', '63667479764df4f13a04eb6e52ba6a23c49a856897fd54ccd5b9382b7d8c0f00');
+INSERT INTO Staff VALUES ('danialcraig', 'Team_000004', 'ASSISTANT_COACH', 'Danial', 'Craig', '8bc94ab98d8ff6d1b16813259b2bfc9af94acaca8355320e553ce2727e4703e9');
 
 
 -- Player: ['player_id', ' team_id', ' first_name', ' last_name', ' position_played', ' player_status']
@@ -125,25 +102,25 @@ INSERT INTO Player VALUES ('Player_000019', 'Team_000001', 'Austin', 'Reeves', '
 INSERT INTO Player VALUES ('Player_000020', 'Team_000001', 'Rui', 'Hachimura', 'PF', 'Healthy');
 
 
--- Match: ['match_id', ' match_date', ' location', ' home_team_id', ' away_team_id', ' home_score', ' away_score']
-INSERT INTO Match VALUES ('Match_000001', '2022-10-18', 'San_Francisco', 'Team_000003', 'Team_000001', 123, 109);
-INSERT INTO Match VALUES ('Match_000002', '2022-10-20', 'Los_Angeles', 'Team_000004', 'Team_000001', 103, 97);
-INSERT INTO Match VALUES ('Match_000003', '2022-10-22', 'Sacramento', 'Team_000002', 'Team_000004', 109, 111);
-INSERT INTO Match VALUES ('Match_000004', '2022-10-23', 'San_Francisco', 'Team_000003', 'Team_000002', 130, 125);
-INSERT INTO Match VALUES ('Match_000005', '2022-11-07', 'San_Francisco', 'Team_000003', 'Team_000002', 116, 113);
-INSERT INTO Match VALUES ('Match_000006', '2022-11-09', 'Los_Angeles', 'Team_000001', 'Team_000004', 101, 114);
-INSERT INTO Match VALUES ('Match_000007', '2022-11-11', 'Los_Angeles', 'Team_000001', 'Team_000002', 114, 120);
-INSERT INTO Match VALUES ('Match_000008', '2022-11-13', 'Sacramento', 'Team_000002', 'Team_000003', 122, 115);
-INSERT INTO Match VALUES ('Match_000009', '2022-11-23', 'San_Francisco', 'Team_000003', 'Team_000004', 124, 107);
-INSERT INTO Match VALUES ('Match_000010', '2022-12-03', 'Los_Angeles', 'Team_000004', 'Team_000002', 96, 123);
-INSERT INTO Match VALUES ('Match_000011', '2022-12-21', 'Sacramento', 'Team_000002', 'Team_000001', 134, 120);
-INSERT INTO Match VALUES ('Match_000012', '2023-01-07', 'Sacramento', 'Team_000002', 'Team_000001', 134, 136);
-INSERT INTO Match VALUES ('Match_000013', '2023-01-24', 'Los_Angeles', 'Team_000001', 'Team_000004', 115, 133);
-INSERT INTO Match VALUES ('Match_000014', '2023-02-11', 'San_Francisco', 'Team_000003', 'Team_000001', 103, 109);
-INSERT INTO Match VALUES ('Match_000015', '2023-02-14', 'Los_Angeles', 'Team_000004', 'Team_000003', 134, 124);
-INSERT INTO Match VALUES ('Match_000016', '2023-02-23', 'Los_Angeles', 'Team_000001', 'Team_000003', 124, 111);
-INSERT INTO Match VALUES ('Match_000017', '2023-02-24', 'Los_Angeles', 'Team_000004', 'Team_000002', 175, 176);
-INSERT INTO Match VALUES ('Match_000018', '2023-03-02', 'San_Francisco', 'Team_000003', 'Team_000004', 115, 91);
+-- Matches: ['match_id', ' match_date', ' location', ' home_team_id', ' away_team_id', ' home_score', ' away_score']
+INSERT INTO Matches VALUES ('Match_000001', '2022-10-18', 'San_Francisco', 'Team_000003', 'Team_000001', 123, 109);
+INSERT INTO Matches VALUES ('Match_000002', '2022-10-20', 'Los_Angeles', 'Team_000004', 'Team_000001', 103, 97);
+INSERT INTO Matches VALUES ('Match_000003', '2022-10-22', 'Sacramento', 'Team_000002', 'Team_000004', 109, 111);
+INSERT INTO Matches VALUES ('Match_000004', '2022-10-23', 'San_Francisco', 'Team_000003', 'Team_000002', 130, 125);
+INSERT INTO Matches VALUES ('Match_000005', '2022-11-07', 'San_Francisco', 'Team_000003', 'Team_000002', 116, 113);
+INSERT INTO Matches VALUES ('Match_000006', '2022-11-09', 'Los_Angeles', 'Team_000001', 'Team_000004', 101, 114);
+INSERT INTO Matches VALUES ('Match_000007', '2022-11-11', 'Los_Angeles', 'Team_000001', 'Team_000002', 114, 120);
+INSERT INTO Matches VALUES ('Match_000008', '2022-11-13', 'Sacramento', 'Team_000002', 'Team_000003', 122, 115);
+INSERT INTO Matches VALUES ('Match_000009', '2022-11-23', 'San_Francisco', 'Team_000003', 'Team_000004', 124, 107);
+INSERT INTO Matches VALUES ('Match_000010', '2022-12-03', 'Los_Angeles', 'Team_000004', 'Team_000002', 96, 123);
+INSERT INTO Matches VALUES ('Match_000011', '2022-12-21', 'Sacramento', 'Team_000002', 'Team_000001', 134, 120);
+INSERT INTO Matches VALUES ('Match_000012', '2023-01-07', 'Sacramento', 'Team_000002', 'Team_000001', 134, 136);
+INSERT INTO Matches VALUES ('Match_000013', '2023-01-24', 'Los_Angeles', 'Team_000001', 'Team_000004', 115, 133);
+INSERT INTO Matches VALUES ('Match_000014', '2023-02-11', 'San_Francisco', 'Team_000003', 'Team_000001', 103, 109);
+INSERT INTO Matches VALUES ('Match_000015', '2023-02-14', 'Los_Angeles', 'Team_000004', 'Team_000003', 134, 124);
+INSERT INTO Matches VALUES ('Match_000016', '2023-02-23', 'Los_Angeles', 'Team_000001', 'Team_000003', 124, 111);
+INSERT INTO Matches VALUES ('Match_000017', '2023-02-24', 'Los_Angeles', 'Team_000004', 'Team_000002', 175, 176);
+INSERT INTO Matches VALUES ('Match_000018', '2023-03-02', 'San_Francisco', 'Team_000003', 'Team_000004', 115, 91);
 
 
 -- Statistic: ['statistic_id', ' player_id', ' match_id', ' pts', ' assists', ' rebounds', ' blocks', ' steals']
